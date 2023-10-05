@@ -1,14 +1,15 @@
 What are your risk areas? Identify and describe them.
 
-Inconsistent data, there were duplicate and different naming conventions in the all_sessions tables. 
+Inconsistent data, there were duplicates and different naming conventions in all_sessions tables. 
 Tables with high missing values
-Redundant columns and different characters missed up in many tables. 
+Redundant columns and different characters missed up in many tables.
+ 
 
 
 QA Process:
 Describe your QA process and include the SQL queries used to execute it.
 
-1, To know if there the count of Sku column and the  count  of name colume in the temp_products macthes, I  performed the below Queries
+1, To know if there the count of Sku column and the count of name column in the temp_products macthes, I  performed the below Queries
 
 --Result--
 
@@ -36,13 +37,13 @@ WHERE table_name = 'temp_products';
 "name"	"text"	"YES"
 "sku"	"text"	"YES"
 
-3, To test for validity of the date column in the all_sessions table
+3, To test for validity of the date column in all_sessions table
 
 SELECT *
 FROM all_sessions
 WHERE date < '1900-01-01';
 
-4, check for missing values and  tO identify columnes with nulls and then confirmed with a count 
+4, check for missing values and to identify columns with nulls and then confirmed with a count. 
 
 --Result--
 
