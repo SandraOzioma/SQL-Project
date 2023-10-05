@@ -35,8 +35,8 @@ sentimentmagnitude::real,
 ratio::real
 from temp_sales_report);
 
-/* Creating table from sales_by_sku
-*/
+/* Creating table from sales_by_sku*/
+
 create table temp_sales_by_sku as
 (select "productSKU" as productsku, total_ordered::"numeric" as total_ordered
 From sales_by_sku 
