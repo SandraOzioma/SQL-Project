@@ -1,7 +1,7 @@
 # Final-Project-Transforming-and-Analyzing-Data-with-SQL
 
 ## Project/Goals
-The e-commerce data analysis project aims to extract actionable insights and trends from the provided dataset to support data-driven decision-making for the business. By employing various analytical techniques, statistical methods, and visualization tools, we seek to identify patterns, customer behaviors, product preferences, and market trends. The project will provide valuable insights that can guide the overall business growth 
+The e-commerce data analysis project aims to extract actionable insights and trends from the provided dataset to support data-driven decision-making for the business. By employing various analytical techniques, statistical methods, and visualization tools, we seek to identify patterns, customer behaviors, product preferences, and market trends. The project will provide valuable insights that can guide the overall business growth.
 My goal is to explore and clean the data to ensure data accuracy, and identify market trands;
 
 ## Process
@@ -12,13 +12,14 @@ My goal is to explore and clean the data to ensure data accuracy, and identify m
 
 ## Results
 Identify the month with the highest number of orders as July 2017. Additionally, determine the city and country that generated the highest revenue, along with the top-selling products.
-with the information avaliable, I can infer that USA had the highest reveune compare to other countries
+with the information available, I can infer that USA had the highest revenue compared to other countries
+
 
 ## Challenges 
 The available information did not provide explicit details about the data sources or the primary tables serving as the source of truth. Further clarity on the underlying data tables is necessary for a comprehensive analysis.
 
 ## Future Goals
-To normalise the tables using the INF, To remove all repeating data  
-More data cleaning
-Identify more outliers
-More interaction with the business to understand the source of truth;
+1, To normalise the tables using the INF, to remove all repeating data.  
+2, More data cleaning.
+3, Identify more outliers.
+4, More interaction with the business to understand the source of truth.
