@@ -6,20 +6,18 @@ Answer the following questions and provide the SQL queries used to find the answ
 
 SQL Queries:
 
-
 WITH  Maxrevenue as (
-  Select all_sessions."city", all_sessions."country", analytics."unit_price" * temp_products."orderedquantity" as transaction_revenue
-from  all_sessions
-	join analytics on all_sessions."visitId"  = analytics."visitId"
-	join temp_products on all_sessions."productSKU" = temp_products."sku" 
+Select all_sessions."city", all_sessions."country", analytics."unit_price" * temp_products."orderedquantity" as transaction_revenue
+From  all_sessions
+Join analytics on all_sessions."visitId"  = analytics."visitId"
+Join temp_products on all_sessions."productSKU" = temp_products."sku" 
 where (analytics."unit_price" * temp_products."orderedquantity") is not null
-	)
-	Select city, country,  MAX(transaction_revenue) as max_transaction_revenue
+)
+Select city, country,  MAX(transaction_revenue) as max_transaction_revenue
+From Maxrevenue
+where transaction_revenue = (Select MAX(transaction_revenue)
 from Maxrevenue
-	where transaction_revenue = (
-	Select MAX(transaction_revenue)
-	from Maxrevenue
-	)
+)
 group by city,country;
 
 
@@ -34,7 +32,7 @@ SQL Queries:
 
 Select distinct(all_sessions.city),all_sessions."country", cast(avg(temp_products.orderedquantity) as numeric (5,0))as average_orderquantity   
 From all_sessions
-	Join temp_products on all_sessions."productSKU" = temp_products."sku" 
+Join temp_products on all_sessions."productSKU" = temp_products."sku" 
 where temp_products.orderedquantity != 0
 Group by all_sessions."city", all_sessions."country" 
 Order by all_sessions."city",all_sessions."country" desc;
@@ -60,8 +58,8 @@ SQL Queries:
 
 Select distinct all_sessions.city, all_sessions."country", all_sessions."v2ProductCategory",    temp_products."name", max(temp_products.orderedquantity)
 Over (partition by all_sessions.city, all_sessions."country", all_sessions."v2ProductCategory" order by all_sessions.country) as Orderedproduct
-from all_sessions 
-	Join temp_products on all_sessions."productSKU" = temp_products."sku"
+From all_sessions 
+Join temp_products on all_sessions."productSKU" = temp_products."sku"
 Where temp_products.orderedquantity != 0 and all_sessions.city is not null and all_sessions."v2ProductCategory" is not null
 Group by all_sessions."city", all_sessions."country", temp_products."name",all_sessions."v2ProductCategory", temp_products.orderedquantity
 Order by all_sessions."v2ProductCategory";
@@ -80,16 +78,11 @@ Answer:
 SQL Queries:
 
 with Rankedproducts as (
-Select all_sessions.city as City, all_sessions."country" as Country , 
-  temp_products."name" as top_selling_product, 
-	sum(temp_products.orderedquantity)as total_quantity_sold,
-	row_number() over (partition by all_sessions.city, all_sessions."country" 
-	order by sum(temp_products.orderedquantity) desc) as product_rank
+Select all_sessions.city as City, all_sessions."country" as Country , temp_products."name" as top_selling_product, sum(temp_products.orderedquantity)as total_quantity_sold, row_number() over (partition by    all_sessions.city, all_sessions."country"  order by sum(temp_products.orderedquantity) desc) as product_rank
 From all_sessions
-	Join temp_products on all_sessions."productSKU" = temp_products."sku"
+Join temp_products on all_sessions."productSKU" = temp_products."sku"
 Group by all_sessions."city", all_sessions."country", temp_products."name"
  )
-
 Select city, country, top_selling_product, total_quantity_sold as total_quantity_sold, product_rank
 From Rankedproducts
 Where product_rank = 1 ;
@@ -110,17 +103,12 @@ Answer:
 
 SQL Queries:
 
-SELECT
-    all_sessions."city",
-    all_sessions.country,
-    SUM(temp_products."orderedquantity" * analytics."unit_price") AS total_revenue
+SELECT  all_sessions."city",  all_sessions.country, SUM(temp_products."orderedquantity" * analytics."unit_price") AS total_revenue
 From analytics 
-	Join all_sessions on analytics."visitId" = all_sessions."visitId"
-	Join temp_products on all_sessions."productSKU" = temp_products."sku"
-GROUP BY
-    all_sessions.city, all_sessions."country"
-ORDER BY
-    all_sessions.city, all_sessions."country" DESC ;
+Join all_sessions on analytics."visitId" = all_sessions."visitId"
+Join temp_products on all_sessions."productSKU" = temp_products."sku"
+GROUP BY all_sessions.city, all_sessions."country"
+ORDER BY all_sessions.city, all_sessions."country" DESC ;
 
 Answer:
 

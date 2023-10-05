@@ -37,14 +37,13 @@ from temp_sales_report);
 
 /* Creating table from sales_by_sku
 */
- create table temp_sales_by_sku as
- (select "productSKU" as productsku,
-	 total_ordered::"numeric" as total_ordered
-  From sales_by_sku 
- );
+create table temp_sales_by_sku as
+(select "productSKU" as productsku, total_ordered::"numeric" as total_ordered
+From sales_by_sku 
+);
 
 
- /* Creating table from products */
+/* Creating table from products */
 
 CREATE  TABLE products(
 sku text, 
@@ -57,14 +56,8 @@ sentimentmagnitude text
 );
 
 create table temp_products as
-(select sku,
- name,
- products.orderedquantity::int,
- stocklevel::int, 
- restockingleadtime::int,
- sentimentscore:: real,
- sentimentmagnitude:: real
- from products);
+(select sku, name, products.orderedquantity::int, stocklevel::int, restockingleadtime::int, sentimentscore:: real, sentimentmagnitude:: real
+from products);
 
 
 */cleaning all_sessions table */
@@ -138,7 +131,8 @@ alter COLUMN "date"
 type date
 USING "date"::date;
 
---convert visitid to int
+--convert visitid to int--
+
 alter TABLE all_sessions
 alter COLUMN "visitId"
 type integer
