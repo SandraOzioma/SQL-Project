@@ -21,5 +21,5 @@ The available information did not provide explicit details about the data source
 ## Future Goals
 1, To normalise the tables using the INF, to remove all repeating data.  
 2, More data cleaning.
-3, Identify more outliers.
+3, Identify more outliers
 4, More interaction with the business to understand the source of truth.
